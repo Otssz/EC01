@@ -26,6 +26,21 @@ const tabela = document.getElementById("tabela-alunos");
 
 const botaoSubmit = form.querySelector("button[type='submit']");
 
+const salvarAluno = (aluno) => {
+  alunos.push(aluno);
+  alert(`Aluno salvo: ${aluno}`);
+};
+
+const atualizarAluno = (indice, aluno) => {
+  alunos[indice] = aluno;
+  alert(`Aluno editado: ${aluno}`);
+};
+
+const excluirAluno = (indice) => {
+  const removido = alunos.splice(indice, 1)[0];
+  alert(`Aluno excluído: ${removido}`);
+};
+
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   const aluno = new Aluno(
@@ -36,9 +51,9 @@ form.addEventListener("submit", function (event) {
   );
 
   if (indiceEdicao === null) {
-    alunos.push(aluno);
+    salvarAluno(aluno);
   } else {
-    alunos[indiceEdicao] = aluno;
+    atualizarAluno(indiceEdicao, aluno);
     indiceEdicao = null;
     botaoSubmit.textContent = "Cadastrar";
   }
@@ -48,7 +63,7 @@ form.addEventListener("submit", function (event) {
 
 function renderizarTabela() {
   tabela.innerHTML = "";
-  alunos.forEach(function (aluno, indice) {
+  alunos.forEach((aluno, indice) => {
     const linha = document.createElement("tr");
     linha.innerHTML = `
           <td>${aluno.nome}</td>
@@ -70,8 +85,7 @@ tabela.addEventListener("click", function (event) {
   const botao = event.target;
   const indice = Number(botao.dataset.index);
   if (botao.dataset.acao === "excluir") {
-    alunos.splice(indice, 1);
-
+    excluirAluno(indice);
     indiceEdicao = null;
     botaoSubmit.textContent = "Cadastrar";
     form.reset();
@@ -80,6 +94,8 @@ tabela.addEventListener("click", function (event) {
   }
   if (botao.dataset.acao === "editar") {
     const aluno = alunos[indice];
+    console.log(`Editando: ${aluno}`);
+
     inputNome.value = aluno.nome;
     inputIdade.value = aluno.idade;
     selectCurso.value = aluno.curso;

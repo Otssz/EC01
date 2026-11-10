@@ -1,3 +1,19 @@
+class Aluno {
+  constructor(nome, idade, curso, notaFinal) {
+    this.nome = nome;
+    this.idade = idade;
+    this.curso = curso;
+    this.notaFinal = notaFinal;
+  }
+  isAprovado() {
+    return this.notaFinal >= 7;
+  }
+
+  toString() {
+    return `${this.nome}, ${this.idade} anos, curso de ${this.curso}, nota final ${this.notaFinal}`;
+  }
+}
+
 let alunos = [];
 let indiceEdicao = null;
 
@@ -12,12 +28,13 @@ const botaoSubmit = form.querySelector("button[type='submit']");
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  const aluno = {
-    nome: inputNome.value,
-    idade: Number(inputIdade.value),
-    curso: selectCurso.value,
-    notaFinal: Number(inputNota.value),
-  };
+  const aluno = new Aluno(
+    inputNome.value,
+    Number(inputIdade.value),
+    selectCurso.value,
+    Number(inputNota.value),
+  );
+
   if (indiceEdicao === null) {
     alunos.push(aluno);
   } else {
@@ -38,6 +55,7 @@ function renderizarTabela() {
           <td>${aluno.idade}</td>
           <td>${aluno.curso}</td>
           <td>${aluno.notaFinal}</td>
+          <td>${aluno.isAprovado() ? "Aprovado" : "Reprovado"}</td>
 
           <td>
           <button data-acao="editar" data-index="${indice}">Editar</button>

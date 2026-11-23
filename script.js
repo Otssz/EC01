@@ -10,7 +10,7 @@ class Aluno {
   }
 
   toString() {
-    return `${this.nome}, ${this.idade} anos, curso de ${this.curso}, nota final ${this.notaFinal}`;
+    return `${this.nome}, ${this.idade} anos, Curso de ${this.curso} | Nota Final: ${this.notaFinal}`;
   }
 }
 
@@ -28,23 +28,23 @@ const botaoSubmit = form.querySelector("button[type='submit']");
 
 const salvarAluno = (aluno) => {
   alunos.push(aluno);
-  alert(`Aluno salvo: ${aluno}`);
+  alert(`Aluno Salvo: ${aluno}`);
 };
 
 const atualizarAluno = (indice, aluno) => {
   alunos[indice] = aluno;
-  alert(`Aluno editado: ${aluno}`);
+  alert(`Aluno Editado: ${aluno}`);
 };
 
 const excluirAluno = (indice) => {
   const removido = alunos.splice(indice, 1)[0];
-  alert(`Aluno excluído: ${removido}`);
+  alert(`Aluno Excluído: ${removido}`);
 };
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
   const aluno = new Aluno(
-    inputNome.value,
+    inputNome.value.trim(),
     Number(inputIdade.value),
     selectCurso.value,
     Number(inputNota.value),
@@ -63,23 +63,42 @@ form.addEventListener("submit", function (event) {
 
 function renderizarTabela() {
   tabela.innerHTML = "";
+
+  if (alunos.length === 0) {
+    tabela.innerHTML = `<tr><td colspan="6" class="vazio">Nenhum aluno cadastrado ainda ☆</td></tr>`;
+  }
+
   alunos.forEach((aluno, indice) => {
     const linha = document.createElement("tr");
+    const aprovado = aluno.isAprovado();
     linha.innerHTML = `
           <td>${aluno.nome}</td>
           <td>${aluno.idade}</td>
           <td>${aluno.curso}</td>
           <td>${aluno.notaFinal}</td>
-          <td>${aluno.isAprovado() ? "Aprovado" : "Reprovado"}</td>
-
           <td>
-          <button data-acao="editar" data-index="${indice}">Editar</button>
-          <button data-acao="excluir" data-index="${indice}">Excluir</button>
+            <span class="badge ${aprovado ? "text-bg-primary" : "text-bg-secondary"}">
+              ${aprovado ? "Aprovado" : "Reprovado"}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-outline-secondary" data-acao="editar" data-index="${indice}">Editar</button>
+            <button class="btn btn-sm btn-outline-danger" data-acao="excluir" data-index="${indice}">Excluir</button>
           </td>
     `;
     tabela.appendChild(linha);
   });
+
+  atualizarPainel();
 }
+
+const atualizarPainel = () => {
+  document.getElementById("statTotal").textContent = alunos.length;
+  document.getElementById("statTopo").textContent = alunos.length;
+  document.getElementById("statAprovados").textContent =
+    listarAprovados().length;
+  document.getElementById("statMedia").textContent = mediaNotas().toFixed(2);
+};
 
 tabela.addEventListener("click", function (event) {
   const botao = event.target;
@@ -172,3 +191,6 @@ btnPorCurso.addEventListener("click", () => {
   const linhas = Object.entries(contagem).map((par) => `${par[0]}: ${par[1]}`);
   mostrarResultado(`Alunos por curso: ${linhas.join(" | ")}`);
 });
+
+// Desenha a tabela vazia e o painel assim que a página abre
+renderizarTabela();

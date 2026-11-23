@@ -7,3 +7,266 @@ label {
 table {
   margin-top: 20px;
 }
+/* ===== Paleta (variáveis CSS) ===== */
+:root {
+  --fundo: #ececf1;
+  --linha-grade: #d3d3dc;
+  --papel: #fbfbfd;
+  --borda: #717171;
+  --azul: #111111;
+  --azul-claro: #e4eaf6;
+  --cinza-aba: #a3a3b0;
+  --texto: #3a3a48;
+  --verde: #4f9d7a;
+}
+
+/* ===== Fundo quadriculado ===== */
+body {
+  font-family: "Gowun Dodum", "Segoe UI", sans-serif;
+  color: var(--texto);
+  background-color: var(--fundo);
+}
+
+.pagina {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.barra-janela {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: -24px -28px 24px;
+  padding: 6px 8px 6px 14px;
+  background: var(--azul);
+  color: #fff;
+  font-family: "DotGothic16", monospace;
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+.barra-botoes {
+  display: flex;
+  gap: 4px;
+}
+
+.barra-btn {
+  width: 22px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  background: var(--papel);
+  color: var(--azul);
+  border: 1px solid var(--borda);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.barra-btn:last-child:hover {
+  background: #e04a4a;
+  color: #fff;
+}
+
+.caderno {
+  background: var(--papel);
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.06),
+    0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: 24px 28px 32px;
+}
+
+.caderno-topo {
+  border-bottom: 2px dashed var(--borda);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+
+.font-retro {
+  font-family: "DotGothic16", monospace;
+}
+
+.titulo {
+  font-family: "DotGothic16", monospace;
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--azul);
+}
+
+.contador {
+  font-family: "DotGothic16", monospace;
+  color: var(--cinza-aba);
+}
+
+.secao {
+  font-family: "DotGothic16", monospace;
+  font-size: 1.05rem;
+  color: var(--azul);
+  border-bottom: 1px dashed var(--borda);
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+}
+
+/* ===== Painel esquerdo (perfil) ===== */
+.perfil {
+  border: 1px dashed var(--borda);
+  border-radius: 16px;
+  padding: 16px;
+  background: #fff;
+  text-align: center;
+}
+
+.foto {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--azul-claro);
+}
+
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.frase {
+  font-size: 0.9rem;
+  margin: 14px 0;
+  color: var(--cinza-aba);
+}
+
+.estatisticas {
+  text-align: left;
+  margin: 0;
+}
+
+.estatisticas li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-top: 1px dashed var(--borda);
+  font-size: 0.9rem;
+}
+
+.estatisticas strong {
+  color: var(--azul);
+  font-family: "DotGothic16", monospace;
+}
+
+/* ===== Abas na lateral direita ===== */
+.abas {
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.abas .nav-link {
+  font-family: "DotGothic16", monospace;
+  background: var(--cinza-aba);
+  color: #fff;
+  border-radius: 0px;
+  padding: 8px 18px;
+}
+
+.abas .nav-link.active {
+  background: var(--azul);
+  color: #fff;
+}
+
+/* A partir de telas grandes: abas na vertical, coladas no caderno */
+@media (min-width: 992px) {
+  .pagina {
+    padding-right: 96px;
+  }
+
+  .abas {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    width: 100px;
+  }
+
+  .abas .nav-link {
+    border-radius: 0px;
+    text-align: left;
+    margin-left: -2px;
+  }
+}
+
+/* ===== Formulário ===== */
+.form-label {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.form-control,
+.form-select {
+  border: 1px solid var(--borda);
+  border-radius: 0px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 0.2rem rgba(91, 120, 176, 0.2);
+}
+
+/* ===== Botões personalizados (sobrescrevem o Bootstrap) ===== */
+.btn-principal {
+  background: var(--azul);
+  color: #fff;
+  border-radius: 0px;
+  padding: 6px 24px;
+  font-family: "DotGothic16", monospace;
+}
+
+.btn-principal:hover {
+  background: #46619a;
+  color: #fff;
+}
+
+.btn-outline-principal {
+  border: 1px solid var(--azul);
+  color: var(--azul);
+  border-radius: 0px;
+  font-size: 0.9rem;
+}
+
+.btn-outline-principal:hover {
+  background: var(--azul);
+  color: #fff;
+}
+
+/* ===== Tabela ===== */
+.tabela {
+  --bs-table-bg: transparent;
+  font-size: 0.9rem;
+}
+
+.tabela thead th {
+  font-family: "DotGothic16", monospace;
+  font-weight: normal;
+  color: var(--azul);
+  border-bottom: 2px dashed var(--borda);
+}
+
+.tabela td {
+  border-bottom: 1px dashed var(--borda);
+}
+
+.tabela .vazio {
+  text-align: center;
+  color: var(--cinza-aba);
+  padding: 20px 0;
+}
+
+/* ===== Caixa de resultado dos relatórios ===== */
+.caixa-resultado {
+  background: var(--azul-claro);
+  border: 1px dashed var(--azul);
+  border-radius: 0px;
+  padding: 16px;
+  min-height: 70px;
+}

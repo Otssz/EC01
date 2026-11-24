@@ -1,16 +1,16 @@
-# Stream JS ☆
+# DevTech Academy ☆
 
-Sistema de gestão de funcionários de uma startup, feito como estudo de caso da faculdade com HTML, CSS, JavaScript e Bootstrap 5.
+Sistema de gerenciamento de alunos, feito como estudo de caso da faculdade com HTML, CSS, JavaScript e Bootstrap 5.
 
 ## Preview
 
-<img src="screenshots/equipe.png" width="48%"> <img src="docs/relatorios.png" width="48%">
+<img src="screenshots/equipe.png" width="48%"> <img src="screenshots/relatorios.png" width="48%">
 
 ## Funcionalidades
 
-- Cadastro, edição e exclusão de funcionários
-- Painel com total de funcionários, salários acima de R$ 5000 e média salarial
-- Relatórios: salário acima de R$ 5000, média salarial, cargos únicos e nomes em maiúsculo
+- Cadastro, edição e exclusão de alunos (nome, idade, curso e nota final)
+- Painel com total de alunos, aprovados (nota ≥ 7) e média das notas
+- Relatórios: aprovados, média das notas, média das idades, nomes em ordem alfabética e alunos por curso
 
 ## Como executar
 

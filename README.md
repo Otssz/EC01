@@ -8,9 +8,9 @@ Sistema de gerenciamento de alunos, feito como estudo de caso da faculdade com H
 
 ## Funcionalidades
 
-- Cadastro, edição e exclusão de alunos (nome, idade, curso e nota final)
-- Painel com total de alunos, aprovados (nota ≥ 7) e média das notas
-- Relatórios: aprovados, média das notas, média das idades, nomes em ordem alfabética e alunos por curso
+1. Cadastro, edição e exclusão de alunos (nome, idade, curso e nota final)
+2. Painel com total de alunos, aprovados (nota ≥ 7) e média das notas
+3. Relatórios: aprovados, média das notas, média das idades, nomes em ordem alfabética e alunos por curso
 
 ## Como executar
 

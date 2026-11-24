@@ -1,4 +1,4 @@
-# DevTech Academy ☆
+# DevTech Academy 
 
 Sistema de gerenciamento de alunos, feito como estudo de caso da faculdade com HTML, CSS, JavaScript e Bootstrap 5.
 
